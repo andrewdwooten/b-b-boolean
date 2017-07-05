@@ -6,7 +6,7 @@
 }
 #top-bar {
   background-color: grey;
-  height: 100px;
+  height: 140px;
   margin-left: 0;
 }
 #welcome-description {
@@ -16,4 +16,17 @@
 #spock {
   width: 400px;
   height: 287px;
+  display: inline;
+}
+#spock-pic {
+  float: right;
+}
+#difficulty-select {
+  text-align: center;
+}
+#casper-pic {
+  float: left
+}
+.div {
+  display:inline-flex;
 }
