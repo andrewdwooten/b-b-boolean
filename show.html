@@ -3,24 +3,26 @@
 
   <title> B-B-Boolean!!</title>
   <head>
-      <link rel="stylesheet" href="styles.scss"/>
+      <link rel="stylesheet" type='text/css' href="styles.css"/>
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script type="text/javascript" src="game.js"></script>
   </head>
   <body>
     <div id='top-bar'>
       <h1 id='welcome-banner'>B-B-Boolean!!</h1>
       <h3 id='welcome-description'>A Spiffy Study Tool for The SuperCool Booleans</h3>
       <div id='difficulty-select'>
-        <form id='difficulty-select'>Select Game Difficulty:
-          <input type='radio' value='easy' />Easy
-          <input type='radio' value='medium' />Medium
-          <input type='radio' value='hard' />Hard
-          <input type='submit' value='Begin Game!'/>
+        <form id='difficulty-form'>Select Game Difficulty:
+          <input type='radio' name='difficulty' value='easy' checked='checked' />Easy
+          <input type='radio' name='difficulty' value='medium' />Medium
+          <input type='radio' name='difficulty' value='hard' />Hard
+          <input id='start-game-button' type='submit' value='Begin Game!'/>
         </form>
       </div>
     </div>
     <br />
       <div id='casper-pic'>
-        <img id='casper' src='https://68.media.tumblr.com/e4ea962d6b29684661b2faeb916138e7/tumblr_nw47xgu8IA1spq12ao1_400.gif' />
+        <img id='casper' src='https://68.media.tumblr.com/0197c1a7168403ac9592f13d38e9cab1/tumblr_nwn4h0myBA1tsxieqo1_400.gif' />
       </div>
       <div id='spock-pic'>
         <img id='spock'src='https://s-media-cache-ak0.pinimg.com/originals/51/3b/e4/513be4dbaeb5472f367ab69f42be3460.gif' />

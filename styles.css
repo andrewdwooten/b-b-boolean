@@ -24,9 +24,16 @@
 #difficulty-select {
   text-align: center;
 }
+#casper {
+  height: 287px;
+  width: 400px;
+}
 #casper-pic {
   float: left
 }
 .div {
   display:inline-flex;
+}
+#start-game-button {
+  background-color: green;
 }
