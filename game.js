@@ -47,17 +47,18 @@ function listenForAnswer(){
 
 function displayFeedback(answer){
   let question = $('#question').text()
-  $('.feedback-table:first').append(`<tr><td>${question}</td><td>${answer}</td><td>${eval(question)}</td></tr>`)
+  let feedback = `<tr><td>${question}</td><td>${answer}</td><td>${eval(question)}</td></tr>`
+  $(feedback).insertAfter('.feedback-table:first tr:first')
   styleFeedback(answer, question)
   continueSession()
 }
 
 function styleFeedback(answer, question) {
   if (answer == eval(question)){
-    $('.feedback-table:first tr:last').addClass('correct-answer')
+    $('.feedback-table:first tr:nth-child(2)').addClass('correct-answer')
   }
   else {
-    $('.feedback-table:first tr:last').addClass('incorrect-answer')
+    $('.feedback-table:first tr:nth-child(2)').addClass('incorrect-answer')
   }
 }
 
