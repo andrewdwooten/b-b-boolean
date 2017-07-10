@@ -45,7 +45,7 @@ function styleFeedback(answer, question) {
 
 function beginTurnCycle(difficulty){
   if (counter <= 20){
-    let question = createQuestion(difficulty)
+    let question = getQuestion(difficulty)
     displayQuestion(question)
   }
   else {
@@ -60,19 +60,8 @@ function endSession(){
   listenForStartSession()
 }
 
-function createQuestion(difficulty){
-  if (difficulty == 'easy'){
-    return questionMaker.easyQuestion()
-  }
-  else if (difficulty == 'medium'){
-    return questionMaker.medQuestion()
-  }
-  else if (difficulty == 'hard') {
-    return questionMaker.hardQuestion()
-  }
-  else {
-    return questionMaker.randomQuestion()
-  }
+function getQuestion(difficulty){
+  return questionMaker.createQuestion(difficulty)
 }
 
 function listenForStartSession() {

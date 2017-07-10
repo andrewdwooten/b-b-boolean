@@ -53,4 +53,19 @@ class questionMaker {
       return questionMaker.hardQuestion()
     }
   }
+
+  static createQuestion(difficulty){
+    if (difficulty == 'easy'){
+      return questionMaker.easyQuestion()
+    }
+    else if (difficulty == 'medium'){
+      return questionMaker.medQuestion()
+    }
+    else if (difficulty == 'hard') {
+      return questionMaker.hardQuestion()
+    }
+    else {
+      return questionMaker.randomQuestion()
+    }
+  }
 }
