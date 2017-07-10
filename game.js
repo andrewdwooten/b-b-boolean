@@ -5,8 +5,26 @@ let table = `<table class='feedback-table'>
               <th>Correct Answer</th>
              </table>`
 
-function clearLastPrompt() {
-  $('#question').html('')
+function listenForStartSession() {
+$('#start-game-button').click(function() {
+   beginTurnCycle($("input[name='difficulty']:checked").val())
+   $('#feedback-holder').prepend(table)
+   $('#start-game-button').off()
+})
+}
+
+function beginTurnCycle(difficulty){
+ if (counter <= 20){
+   let question = getQuestion(difficulty)
+   displayQuestion(question)
+ }
+ else {
+   endSession()
+ }
+}
+
+function getQuestion(difficulty){
+  return questionMaker.createQuestion(difficulty)
 }
 
 function displayQuestion(question){
@@ -17,21 +35,21 @@ function displayQuestion(question){
   }
 }
 
+function clearLastPrompt() {
+  $('#question').html('')
+}
+
 function listenForAnswer(){
   $('.answer-button').click(function() {
       displayFeedback($(this).data().id)
   })
 }
+
 function displayFeedback(answer){
   let question = $('#question').text()
   $('.feedback-table:first').append(`<tr><td>${question}</td><td>${answer}</td><td>${eval(question)}</td></tr>`)
   styleFeedback(answer, question)
   continueSession()
-}
-
-function continueSession() {
-  counter ++
-  beginTurnCycle($("input[name='difficulty']:checked").val())
 }
 
 function styleFeedback(answer, question) {
@@ -43,33 +61,17 @@ function styleFeedback(answer, question) {
   }
 }
 
-function beginTurnCycle(difficulty){
-  if (counter <= 20){
-    let question = getQuestion(difficulty)
-    displayQuestion(question)
-  }
-  else {
-    endSession()
-  }
+function continueSession() {
+  counter ++
+  beginTurnCycle($("input[name='difficulty']:checked").val())
 }
+
 
 function endSession(){
   counter = 1
   $('.answer-button').off()
   alert('Study Session Complete!')
   listenForStartSession()
-}
-
-function getQuestion(difficulty){
-  return questionMaker.createQuestion(difficulty)
-}
-
-function listenForStartSession() {
-  $('#start-game-button').click(function() {
-      beginTurnCycle($("input[name='difficulty']:checked").val())
-      $('#feedback-holder').prepend(table)
-      $('#start-game-button').off()
-  })
 }
 
 $(document).ready( () =>{
