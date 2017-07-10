@@ -47,6 +47,7 @@
   text-align: center;
   font-weight: bold;
   font-family: sans-serif;
+  font-size: 18px;
 }
 #truth-button {
   height: 80px;
@@ -54,7 +55,7 @@
   background-color: green;
   font-weight: bold;
   font-size: 16pt;
-  margin-top: 155px;
+  margin-top: 150px;
 }
 #false-button {
   height: 80px;
@@ -71,7 +72,7 @@
 }
 td {
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin: 0px;
   padding: 0px;
@@ -87,5 +88,5 @@ th {
 }
 tr:hover {
   background-color: yellow;
-
+  font-size: 18px;
 }

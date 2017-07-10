@@ -4,6 +4,7 @@ let table = `<table class='feedback-table'>
               <th>Your Answer</th>
               <th>Correct Answer</th>
              </table>`
+
 function clearLastPrompt() {
   $('#question').html('')
 }
@@ -23,15 +24,23 @@ function listenForAnswer(){
 }
 function displayFeedback(answer){
   let question = $('#question').text()
-  $('.feedback-table:first').append(`<tr><td>${question}</td><td>${answer}</td><td>${eval(question)}</td></tr><br />`)
+  $('.feedback-table:first').append(`<tr><td>${question}</td><td>${answer}</td><td>${eval(question)}</td></tr>`)
+  styleFeedback(answer, question)
+  continueSession()
+}
+
+function continueSession() {
+  counter ++
+  beginTurnCycle($("input[name='difficulty']:checked").val())
+}
+
+function styleFeedback(answer, question) {
   if (answer == eval(question)){
     $('.feedback-table:first tr:last').addClass('correct-answer')
   }
   else {
     $('.feedback-table:first tr:last').addClass('incorrect-answer')
   }
-  counter ++
-  beginTurnCycle($("input[name='difficulty']:checked").val())
 }
 
 function beginTurnCycle(difficulty){
@@ -58,10 +67,14 @@ function createQuestion(difficulty){
   else if (difficulty == 'medium'){
     return questionMaker.medQuestion()
   }
-  else {
+  else if (difficulty == 'hard') {
     return questionMaker.hardQuestion()
   }
+  else {
+    return questionMaker.randomQuestion()
+  }
 }
+
 function listenForStartSession() {
   $('#start-game-button').click(function() {
       beginTurnCycle($("input[name='difficulty']:checked").val())

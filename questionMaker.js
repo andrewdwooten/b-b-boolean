@@ -1,7 +1,7 @@
 const operators = [ '>', '<', '==', '!=', '>=', '<=']
 const comparors = ['||', '&&']
 const booleans  = ['false', 'true']
-
+const difficulties = ['easy', 'medium', 'hard']
 
 Array.prototype.random = function () {
     return this[Math.floor(Math.random() * this.length)]
@@ -38,6 +38,19 @@ class questionMaker {
     }
     else {
       return `(!(${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()}) ${comparors.random()} ((${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()})`
+    }
+  }
+
+  static randomQuestion(){
+    let randomDifficulty = difficulties.random()
+    if (randomDifficulty == 'easy'){
+      return questionMaker.easyQuestion()
+    }
+    else if (randomDifficulty == 'medium'){
+      return questionMaker.medQuestion()
+    }
+    else {
+      return questionMaker.hardQuestion()
     }
   }
 }
