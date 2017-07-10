@@ -37,3 +37,55 @@
 #start-game-button {
   background-color: green;
 }
+#player-board {
+  height: 287px;
+  width: 464px;
+  background-color: grey;
+  display: inline-block;
+}
+#question {
+  text-align: center;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+#truth-button {
+  height: 80px;
+  width: 160px;
+  background-color: green;
+  font-weight: bold;
+  font-size: 16pt;
+  margin-top: 155px;
+}
+#false-button {
+  height: 80px;
+  width: 160px;
+  background-color: red;
+  font-weight: bold;
+  font-size: 16pt;
+  margin-left: 140px;
+}
+.feedback-table {
+  width: 100%;
+  background-color: black;
+  margin-top: 10px;
+}
+td {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+th {
+  background-color: white;
+}
+.correct-answer {
+  background-color: green;
+}
+.incorrect-answer {
+  background-color: red;
+}
+tr:hover {
+  background-color: yellow;
+
+}

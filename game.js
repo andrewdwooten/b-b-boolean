@@ -1,54 +1,76 @@
-const operators = [ '>', '<', '==', '!=', '>=', '<=']
-const comparors = ['||', '&&']
-const booleans  = ['false', 'true']
 let counter = 1
-
-Array.prototype.random = function () {
-    return this[Math.floor(Math.random() * this.length)]
+let table = `<table class='feedback-table'>
+              <th>Question</th>
+              <th>Your Answer</th>
+              <th>Correct Answer</th>
+             </table>`
+function clearLastPrompt() {
+  $('#question').html('')
 }
 
-function randomNumber(){
-  return Math.floor(Math.random() * 100)
-}
-
-class questionMaker {
-
-  static base(){
-    return `${randomNumber()} ${operators.random()} ${randomNumber()}`
-  }
-
-  static hardBase(){
-    return `${booleans.random()} ${comparors.random()} ${booleans.random()}`
-  }
-
-  static easyQuestion(){
-    return `${questionMaker.base()} ${comparors.random()} ${questionMaker.base()}`
-  }
-
-  static medQuestion(){
-    return `${questionMaker.easyQuestion()} ${comparors.random()} ${questionMaker.easyQuestion()}`
-  }
-
-  static hardQuestion(){
-    if (counter % 2 == 0) {
-      return `((${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()}) ${comparors.random()} ((${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()})`
-    }
-    else if (counter % 3 == 0) {
-      return `((${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()}) ${comparors.random()} (!(${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()})`
-    }
-    else {
-      return `(!(${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()}) ${comparors.random()} ((${questionMaker.hardBase()}) ${comparors.random()} ${booleans.random()})`
-    }
+function displayQuestion(question){
+  clearLastPrompt()
+  $('#question').html(question)
+  if (counter == 1){
+    listenForAnswer()
   }
 }
 
-function startGame(difficulty){
-  console.log(questionMaker.medQuestion())
-}
-$(document).ready( () =>{
-  $('#start-game-button').click(function() {
-      startGame($("input[name='difficulty']:checked").val())
+function listenForAnswer(){
+  $('.answer-button').click(function() {
+      displayFeedback($(this).data().id)
   })
-  $('form').on('submit', (event) => event.preventDefault());
+}
+function displayFeedback(answer){
+  let question = $('#question').text()
+  $('.feedback-table:first').append(`<tr><td>${question}</td><td>${answer}</td><td>${eval(question)}</td></tr><br />`)
+  if (answer == eval(question)){
+    $('.feedback-table:first tr:last').addClass('correct-answer')
+  }
+  else {
+    $('.feedback-table:first tr:last').addClass('incorrect-answer')
+  }
+  counter ++
+  beginTurnCycle($("input[name='difficulty']:checked").val())
+}
 
+function beginTurnCycle(difficulty){
+  if (counter <= 20){
+    let question = createQuestion(difficulty)
+    displayQuestion(question)
+  }
+  else {
+    endSession()
+  }
+}
+
+function endSession(){
+  counter = 1
+  $('.answer-button').off()
+  alert('Study Session Complete!')
+  listenForStartSession()
+}
+
+function createQuestion(difficulty){
+  if (difficulty == 'easy'){
+    return questionMaker.easyQuestion()
+  }
+  else if (difficulty == 'medium'){
+    return questionMaker.medQuestion()
+  }
+  else {
+    return questionMaker.hardQuestion()
+  }
+}
+function listenForStartSession() {
+  $('#start-game-button').click(function() {
+      beginTurnCycle($("input[name='difficulty']:checked").val())
+      $('#feedback-holder').prepend(table)
+      $('#start-game-button').off()
+  })
+}
+
+$(document).ready( () =>{
+  listenForStartSession()
+  $('form').on('submit', (event) => event.preventDefault());
 })

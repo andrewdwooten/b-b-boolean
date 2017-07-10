@@ -6,6 +6,7 @@
       <link rel="stylesheet" type='text/css' href="styles.css"/>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <script type="text/javascript" src="game.js"></script>
+      <script type="text/javascript" src="questionMaker.js"></script>
   </head>
   <body>
     <div id='top-bar'>
@@ -24,8 +25,18 @@
       <div id='casper-pic'>
         <img id='casper' src='https://68.media.tumblr.com/0197c1a7168403ac9592f13d38e9cab1/tumblr_nwn4h0myBA1tsxieqo1_400.gif' />
       </div>
+      <div id='player-board'>
+        <p id='question'>
+          Pick a difficulty and click 'Begin Game!' to get started!!
+        </p>
+        <button class='answer-button' data-id='true' id='truth-button'>True</button>
+        <button class='answer-button' data-id='false' id='false-button'>False</button>
+      </div>
       <div id='spock-pic'>
         <img id='spock'src='https://s-media-cache-ak0.pinimg.com/originals/51/3b/e4/513be4dbaeb5472f367ab69f42be3460.gif' />
+      </div>
+      <div id='feedback-holder'>
+        
       </div>
   </body>
 </html>
